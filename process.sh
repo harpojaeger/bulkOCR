@@ -19,15 +19,7 @@ echo "$header $thebar\r\c"
 }
 
 cd all_imgs
-numfiles=`ls -1 | wc -l`
-n=1
-echo "Cropping..."
-for i in $( ls ); do
-convert $i -gravity southeast -crop 1710x100+0+0 +repage ~/Desktop/CF\ camera\ photos/cropped/$i.jpg
-updatebar $n $numfiles
-((n++))
-done
-echo "\nDone."
+mogrify -identify -path ../cropped -gravity southeast -crop 1710x100+0+0 *
 cd ../cropped
 numfiles=`ls -1 | wc -l`
 n=1
