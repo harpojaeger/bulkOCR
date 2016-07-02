@@ -1,9 +1,3 @@
-calc(){ awk "BEGIN { print $*}"; }
-int(){ awk "BEGIN { print int($1)}"; }
-width=`tput cols`
-height=`tput lines`
-
-
 numfiles=`ls -l some_imgs | wc -l`
 mogrify -identify -path cropped -gravity southeast -crop 1710x100+0+0 +repage some_imgs/* | awk -v n="$numfiles" '
 BEGIN {
