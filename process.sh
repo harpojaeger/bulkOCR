@@ -19,7 +19,7 @@ echo "$header $thebar\r\c"
 }
 
 cd all_imgs
-mogrify -identify -path ../cropped -gravity southeast -crop 1710x100+0+0 *
+mogrify -identify -path ../cropped -gravity southeast -crop 1710x100+0+0 +repage *
 cd ../cropped
 numfiles=`ls -1 | wc -l`
 n=1
