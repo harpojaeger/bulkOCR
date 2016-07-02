@@ -18,7 +18,7 @@ thebar=`eval $bar`
 echo "$header $thebar\r\c"
 }
 
-cd all\ imgs
+cd all_imgs
 numfiles=`ls -1 | wc -l`
 n=1
 echo "Cropping..."
