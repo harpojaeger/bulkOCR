@@ -17,7 +17,7 @@ updatebar ()
   thebar=`eval $bar`
   echo "$header $thebar\r\c"
 }
-touch data.txt
+
 numfiles=`ls -l some_imgs | wc -l`
 mogrify -identify -path cropped -gravity southeast -crop 1710x100+0+0 +repage some_imgs/* | awk -v n="$numfiles" '
 BEGIN {
@@ -33,13 +33,14 @@ BEGIN {
 cd cropped
 numfiles=`ls -1 | wc -l`
 n=1
-Echo "OCRing..."
+echo "OCRing..."
 for i in $( ls ); do
-  tesseract $i $i &> /dev/null
-  read -r FIRSTLINE < $i.txt
-  echo $FIRSTLINE >> ../data.txt
-  rm $i.txt
+  tesseract $i ../txt/$i -psm 7 &> /dev/null
+  
+  
   updatebar $n $numfiles
   ((n++))
 done
-echo "\nDone."
+echo "\nCompiling data..."
+grep -hv "^$" ../txt/* >> ../data.txt
+echo "Done."
